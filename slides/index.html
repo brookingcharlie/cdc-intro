@@ -120,9 +120,47 @@
             <li class="fragment">Client developers are able to communicate their expectations of the service's API to service owners.</li>
           </ol>
 
+          <p class="fragment">
+            Best used between teams with independent release cycles.
+            Could result in overhead with minimal value for providers/consumers in same team.
+          </p>
+
           <p class="footnote">
             [1] Ian Robinson, <i>Consumer-Driven Contracts</i>, <a href="http://www.servicedesignpatterns.com/WebServiceEvolution/ConsumerDrivenContracts"><i>Service Design Patterns</i></a>
           </p>
+        </section>
+        <section>
+          <h2>Notes</h2>
+
+          <ul>
+            <li>Clients publish tests, run by provider</li>
+            <li>Test both client and service against contract</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Evolving a service</h2>
+
+          <ol>
+            <li class="fragment">Consumer identifies need from provider that's not currently met.</li>
+            <li class="fragment">Consumer collaborates with provider to define API that satisfies new need whilst considering constraints and considerations of the provider.</li>
+            <li class="fragment">Provider implements API to honour agreed contract (and old ones).</li>
+            <li class="fragment">Provider runs automated test to verify that API satisfies the contract.</li>
+            <li class="fragment">Provider publishes new service; consumer publishes new contract tests.</li>
+          </ol>
+
+          <p class="fragment"><em>Contracts codify the result of conversations - they don't replace them.</em></p>
+
+          <p class="footnote">
+            [1] <a href="http://www.slideshare.net/QaiserMazhar/microservices-consumer-driven-contracts-in-practice">Microservices: Consumer Driven Contracts in Practice</a>
+          </p>
+        </section>
+        <section>
+          <h2>Frameworks</h2>
+
+          <ul>
+            <li>Pact (realestate.com.au)</li>
+            <li>Pacto (ThoughtWorks)</li>
+          </ul>
         </section>
         <section>
           <h2>References</h2>
