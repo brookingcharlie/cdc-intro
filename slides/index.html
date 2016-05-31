@@ -155,28 +155,32 @@
           </p>
         </section>
         <section>
+          <h2>Stubbing service dependencies</h2>
+
+          <blockquote>
+            Consuming services usually cannot test against live suppliers since such tests are
+            slow and brittle, so it’s best to use Test Doubles, leading to the danger that
+            the test doubles get out of sync with the real supplier service. Consumer teams
+            can protect themselves from these failures by using integration contract tests –
+            tests that compare actual service responses with test values.
+          </blockquote>
+
+          <p class="footnote">
+            [1] <a href="https://www.thoughtworks.com/radar/techniques/consumer-driven-contract-testing">ThoughtWorks Technology Radar: Consumer-driven contract testing</a>
+          </p>
+        </section>
+        <section>
           <h2>Frameworks</h2>
 
           <ul>
-            <li>Pact (realestate.com.au)</li>
+            <li><a href="https://github.com/realestate-com-au/pact">Pact</a> (realestate.com.au)</li>
             <li>Pacto (ThoughtWorks)</li>
           </ul>
         </section>
         <section>
           <h2>References</h2>
-
           <ul>
-            <li>
-              <a href="https://www.thoughtworks.com/radar/techniques/consumer-driven-contract-testing"
-              >ThoughtWorks Technology Radar: Consumer-driven contract testing</a>
-            </li>
-            <li>
-              <a href="https://github.com/realestate-com-au/pact"
-              >Pact</a>
-            </li>
-            <li>
-              <a href="http://martinfowler.com/articles/consumerDrivenContracts.html"
-              >Consumer-Driven Contracts: A Service Evolution Pattern</a>
+            <li><a href="http://martinfowler.com/articles/consumerDrivenContracts.html">Consumer-Driven Contracts: A Service Evolution Pattern</a></li>
           </ul>
         </section>
       </div>
