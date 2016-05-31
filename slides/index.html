@@ -26,54 +26,37 @@
   <body>
     <div class="reveal">
       <div class="slides">
-        <section class="title present" data-markdown>
-          <script type="text/template">
-            # Consumer-driven contract testing
-          </script>
+        <section class="title present">
+          <h1>Consumer-driven contract testing</h1>
         </section>
-        <section data-markdown>
-          <script type="text/template">
-            ## References
+        <section>
+          <h2>References</h2>
 
-            * [ThoughtWorks Technology Radar: Consumer-driven contract testing](https://www.thoughtworks.com/radar/techniques/consumer-driven-contract-testing)
-            * [Pact](https://github.com/realestate-com-au/pact)
-            * [Consumer-Driven Contracts: A Service Evolution Pattern](http://martinfowler.com/articles/consumerDrivenContracts.html)
-          </script>
+          <ul>
+            <li>
+              <a href="https://www.thoughtworks.com/radar/techniques/consumer-driven-contract-testing"
+              >ThoughtWorks Technology Radar: Consumer-driven contract testing</a>
+            </li>
+            <li>
+              <a href="https://github.com/realestate-com-au/pact"
+              >Pact</a>
+            </li>
+            <li>
+              <a href="http://martinfowler.com/articles/consumerDrivenContracts.html"
+              >Consumer-Driven Contracts: A Service Evolution Pattern</a>
+          </ul>
         </section>
-        <section data-markdown>
-          <script type="text/template">
-            ## Service Design Pattern
+        <section>
+          <h2>Context</h2>
 
-            Context:
-
-            1. A service has several clients, each with different needs.
-            1. Service owners know who their clients are, and
-            1. Client developers are able to communicate their expectations of the service's API to service owners.
-
-            See <http://www.servicedesignpatterns.com/WebServiceEvolution/ConsumerDrivenContracts>.
-          </script>
-        </section>
-        <section data-markdown>
-          <script type="text/template">
-            ## Principle
-
-            "Service owners who understand how clients use their APIs are at a great advantage.
-            They are able to create client-centric tests that identify when service changes
-            cause clients to break."
-
-            See <http://www.servicedesignpatterns.com/WebServiceEvolution/ConsumerDrivenContracts>.
-          </script>
-        </section>
-        <section data-markdown>
-          <script type="text/template">
-            ## Code example
-
-            ```JavaScript
-            function add(x, y) {
-              return x + y;
-            }
-            ```
-          </script>
+          <ol>
+            <li class="fragment">A service has several clients, each with different needs.</li>
+            <li class="fragment">Service owners know who their clients are, and</li>
+            <li class="fragment">Client developers are able to communicate their expectations of the service's API to service owners.</li>
+          </ol>
+          <p class="fragment">
+            From <a href="http://www.servicedesignpatterns.com/WebServiceEvolution/ConsumerDrivenContracts"><i>Service Design Patterns</i></a>
+          </p>
         </section>
       </div>
     </div>
