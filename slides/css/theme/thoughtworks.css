@@ -38,14 +38,6 @@ section.h4 {
   color: #b5b935; }
 
 li {
-  /*
-   * Hack by Charlie Brooking (@brookingcharlie):
-   * Align subsequence lines with start of first line
-   * rather than wrapping from underneath the bullet point.
-   */
-  padding-left: 0.1em;
-  text-indent: -1.2em;
-
   list-style: none; }
 
 li:before {

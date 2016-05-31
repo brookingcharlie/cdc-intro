@@ -15,6 +15,15 @@
     <link rel="stylesheet" href="lib/css/zenburn.css">
 
     <style>
+      li {
+        /*
+         * Hack to fix thoughtworks theme:
+         * Align subsequent lines with start of first line
+         * rather than wrapping underneath the bullet point.
+         */
+        padding-left: 0.1em;
+        text-indent: -1.2em;
+      }
       .reveal strong {
         font-weight: normal;
         font-family: 'Open Sans Bold';
