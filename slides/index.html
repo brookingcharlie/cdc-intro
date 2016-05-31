@@ -15,6 +15,10 @@
     <link rel="stylesheet" href="lib/css/zenburn.css">
 
     <style>
+      .reveal strong {
+        font-weight: normal;
+        font-family: 'Open Sans Bold';
+      }
       .reveal li {
         margin-bottom: 0.5em;
       }
@@ -47,7 +51,7 @@
           <p>Consider Consumer-Driven Contracts as a Design Pattern.</p>
 
           <blockquote>
-            <p>Problem statement:</p>
+            <p><strong>Problem statement:</strong></p>
             <p>
               <span class="fragment">How can a web service API reflect its clients' needs<br></span>
               <span class="fragment">while enabling evolution<br></span>
@@ -60,10 +64,46 @@
           </p>
         </section>
         <section>
+          <h2>Options</h2>
+
+          <p>How can we prevent breaking changes to services?</p>
+
+          <ol style="width: 75%;">
+            <li class="fragment"><strong>Option 1:</strong> service providers create APIs that attempt to address all current and future client needs.</li>
+            <li class="fragment"><strong>Option 2:</strong> service providers write tests based on an interpretation of how clients might use the service.</li>
+            <li class="fragment"><strong>Option 3:</strong> clients provide documentation to providers specifying how they expect to use the service.</li>
+            <li class="fragment"><strong>Option 4:</strong> something else?</li>
+          </ol>
+
+          <p class="footnote">
+            [1] Ian Robinson, <i>Consumer-Driven Contracts</i>, <a href="http://www.servicedesignpatterns.com/WebServiceEvolution/ConsumerDrivenContracts"><i>Service Design Patterns</i></a>
+          </p>
+        </section>
+        <section>
+          <h2>Solution</h2>
+
+          <ul>
+            <li class="fragment">
+              Client developers write automated integration tests that express the client's expectations of a service API.
+            </li>
+            <li class="fragment">
+              These tests are given to the service owner, who incorporates them into the service's test suite.
+              (They enter into a contract.)
+            </li>
+          </ul>
+
+          <p class="fragment"><strong>The set of integration tests received from all existing clients represents the service's obligations to its client base.</strong></p>
+
+          <p class="footnote">
+            [1] Ian Robinson, <i>Consumer-Driven Contracts</i>, <a href="http://www.servicedesignpatterns.com/WebServiceEvolution/ConsumerDrivenContracts"><i>Service Design Patterns</i></a>
+          </p>
+        </section>
+        <section>
           <h2>Context</h2>
 
           <p>Consumer-Driven Contracts don't make sense everywhere.</p>
 
+          <div class="fragment">
           <p>They should be used when:</p>
 
           <ol style="width: 75%;">
@@ -71,6 +111,7 @@
             <li><span class="fragment">Service owners know who their clients are, and</span></li>
             <li><span class="fragment">Client developers are able to communicate their expectations of the service's API to service owners.</span></li>
           </ol>
+          </div>
 
           <p class="footnote">
             [1] Ian Robinson, <i>Consumer-Driven Contracts</i>, <a href="http://www.servicedesignpatterns.com/WebServiceEvolution/ConsumerDrivenContracts"><i>Service Design Patterns</i></a>
