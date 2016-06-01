@@ -97,32 +97,14 @@
 
           <ul>
             <li class="fragment">
-              Consumer developers write automated integration tests that express their expectations of a service API.
+              <span class="highlighted">Consumer developers write automated integration tests</span> that express their expectations of a service API.
             </li>
             <li class="fragment">
               These tests are accepted by the service owner, who incorporates them into the service's test suite.
-              (They enter into a contract.)
             </li>
           </ul>
 
           <p class="fragment"><strong>The set of integration tests received from all existing consumers represents the service's obligations to its consumer base.</strong></p>
-
-          <p class="footnote">
-            [1] Ian Robinson, <i>Consumer-Driven Contracts</i>, <a href="http://www.servicedesignpatterns.com/WebServiceEvolution/ConsumerDrivenContracts"><i>Service Design Patterns</i></a>
-          </p>
-        </section>
-        <section>
-          <h2>Context</h2>
-
-          <p>Consumer-Driven Contracts don't make sense everywhere.</p>
-
-          <p>They should be used when:</p>
-
-          <ol style="width: 80%;">
-            <li class="fragment">A service has several consumers, each with different needs.</li>
-            <li class="fragment">Service owners know who their consumers are.</li>
-            <li class="fragment">Client developers are able to communicate their expectations of the service's API to service owners.</li>
-          </ol>
 
           <p class="footnote">
             [1] Ian Robinson, <i>Consumer-Driven Contracts</i>, <a href="http://www.servicedesignpatterns.com/WebServiceEvolution/ConsumerDrivenContracts"><i>Service Design Patterns</i></a>
@@ -146,18 +128,20 @@
           </p>
         </section>
         <section>
-          <h2>Stubbing service dependencies</h2>
+          <h2>Context</h2>
 
-          <blockquote>
-            Consuming services usually cannot test against live suppliers since such tests are
-            slow and brittle, so it’s best to use Test Doubles, leading to the danger that
-            the test doubles get out of sync with the real supplier service. Consumer teams
-            can protect themselves from these failures by using integration contract tests –
-            tests that compare actual service responses with test values.
-          </blockquote>
+          <p>Consumer-Driven Contracts don't make sense everywhere.</p>
+
+          <p>They should be used when:</p>
+
+          <ol style="width: 80%;">
+            <li class="fragment">A service has several consumers, each with different needs.</li>
+            <li class="fragment">Service owners know who their consumers are.</li>
+            <li class="fragment">Client developers are able to communicate their expectations of the service's API to service owners.</li>
+          </ol>
 
           <p class="footnote">
-            [1] <a href="https://www.thoughtworks.com/radar/techniques/consumer-driven-contract-testing">ThoughtWorks Technology Radar: Consumer-driven contract testing</a>
+            [1] Ian Robinson, <i>Consumer-Driven Contracts</i>, <a href="http://www.servicedesignpatterns.com/WebServiceEvolution/ConsumerDrivenContracts"><i>Service Design Patterns</i></a>
           </p>
         </section>
         <section>
