@@ -33,9 +33,12 @@
       }
       .reveal .footnote {
         position: fixed;
-        bottom: 0;
+        bottom: -50px;
         width: 100%;
         font-size: 0.9em;
+      }
+      .highlighted {
+        background-color: yellow;
       }
     </style>
 
@@ -78,10 +81,10 @@
           <p>How can we prevent breaking changes to services?</p>
 
           <ol style="width: 75%;">
-            <li class="fragment"><strong>Option 1:</strong> service providers create APIs that attempt to address all current and future client needs.</li>
-            <li class="fragment"><strong>Option 2:</strong> service providers write tests based on an interpretation of how clients might use the service.</li>
-            <li class="fragment"><strong>Option 3:</strong> clients provide documentation to providers specifying how they expect to use the service.</li>
-            <li class="fragment"><strong>Option 4:</strong> <span style="background-color: yellow;">something else?</span></li>
+            <li class="fragment"><strong>Option 1:</strong> service providers create APIs that attempt to address all current and future consumer needs.</li>
+            <li class="fragment"><strong>Option 2:</strong> service providers write tests based on an interpretation of how consumers might use the service.</li>
+            <li class="fragment"><strong>Option 3:</strong> consumers provide documentation to providers specifying how they expect to use the service.</li>
+            <li class="fragment"><strong>Option 4:</strong> <span class="highlighted">something else?</span></li>
           </ol>
 
           <p class="footnote">
@@ -93,7 +96,7 @@
 
           <ul>
             <li class="fragment">
-              Client developers write automated integration tests that express the client's expectations of a service API.
+              Consumer developers write automated integration tests that express their expectations of a service API.
             </li>
             <li class="fragment">
               These tests are accepted by the service owner, who incorporates them into the service's test suite.
@@ -101,7 +104,7 @@
             </li>
           </ul>
 
-          <p class="fragment"><strong>The set of integration tests received from all existing clients represents the service's obligations to its client base.</strong></p>
+          <p class="fragment"><strong>The set of integration tests received from all existing consumers represents the service's obligations to its consumer base.</strong></p>
 
           <p class="footnote">
             [1] Ian Robinson, <i>Consumer-Driven Contracts</i>, <a href="http://www.servicedesignpatterns.com/WebServiceEvolution/ConsumerDrivenContracts"><i>Service Design Patterns</i></a>
@@ -115,8 +118,8 @@
           <p>They should be used when:</p>
 
           <ol style="width: 75%;">
-            <li class="fragment">A service has several clients, each with different needs.</li>
-            <li class="fragment">Service owners know who their clients are, and</li>
+            <li class="fragment">A service has several consumers, each with different needs.</li>
+            <li class="fragment">Service owners know who their consumers are, and</li>
             <li class="fragment">Client developers are able to communicate their expectations of the service's API to service owners.</li>
           </ol>
 
@@ -133,8 +136,8 @@
           <h2>Notes</h2>
 
           <ul>
-            <li>Clients publish tests, run by provider</li>
-            <li>Test both client and service against contract</li>
+            <li>Consumers publish tests, run by provider</li>
+            <li>Test both consumer and service against contract</li>
           </ul>
         </section>
         <section>
@@ -176,6 +179,37 @@
             <li><a href="https://github.com/realestate-com-au/pact">Pact</a> (realestate.com.au)</li>
             <li>Pacto (ThoughtWorks)</li>
           </ul>
+
+          <p>Allows testing of both consumer and provider using fast unit tests.</p>
+        </section>
+        <section>
+          <h2>Pact: Consumer side</h2>
+
+          <p>
+            <strong>Service consumers</strong> define the requests they'll make and the responses they expect back.
+            <span class="highlighted">These expectations are used in consumer tests</span> to provide a mock service provider.
+          </p>
+
+          <img src="img/pact-record.png" class="no-border" style="width: 760px;" />
+
+          <p class="footnote">
+            [1] <a href="https://github.com/realestate-com-au/pact">GitHub: realestate-com-au/pact</a>
+          </p>
+        </section>
+        <section>
+          <h2>Pact: Provider side</h2>
+
+          <p>
+            Recorded interactions with the consumer are <span class="highlighted">played back in the
+            service provider tests</span> to ensure the <strong>service provider</strong> actually does provide
+            the response the consumer expects.
+          </p>
+
+          <img src="img/pact-replay.png" class="no-border" style="width: 780px;" />
+
+          <p class="footnote">
+            [1] <a href="https://github.com/realestate-com-au/pact">GitHub: realestate-com-au/pact</a>
+          </p>
         </section>
         <section>
           <h2>References</h2>
