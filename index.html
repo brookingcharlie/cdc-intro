@@ -218,28 +218,108 @@
             <a href="https://github.com/brookingcharlie/microservices-pact">Spring Boot Microservices + Pact-JVM</a>
           </p>
 
-          <pre>
+<pre style="font-size: 18px;"><code class="text" data-trim data-noescape>
 git clone git@github.com:brookingcharlie/microservices-pact.git
-cd microservices-pact/
+</code></pre>
 
+<pre style="font-size: 18px;"><code class="text" data-trim data-noescape>
+# Build/test the conumer
 ./gradlew microservices-pact-consumer:test
 less microservices-pact-consumer/target/pacts/Foo_Consumer-Foo_Provider.json
+</code></pre>
 
+<pre style="font-size: 18px;"><code class="text" data-trim data-noescape>
+# Build/test the provider
 ./gradlew microservices-pact-provider:assemble
 java -jar microservices-pact-provider/build/libs/microservices-pact-provider-0.0.1.jar
 curl -v 'http://localhost:8080/foos/'
 ./gradlew microservices-pact-provider:pactVerify
+</code></pre>
+        </section>
+        <section>
+          <h2>Breaking the provider</h2>
 
-vim $(find microservices-pact-provider -name Foo.java)
-vim $(find microservices-pact-provider -name Application.java)
-./gradlew microservices-pact-provider:assemble
-./gradlew microservices-pact-provider:pactVerify
+<pre style="font-size: 18px;"><code class="diff" data-trim data-noescape>
+--- a/microservices-pact-provider/src/main/java/io/pivotal/microservices/pact/provider/Application.java
++++ b/microservices-pact-provider/src/main/java/io/pivotal/microservices/pact/provider/Application.java
+@@ -26,4 +26,4 @@ public class Application {
+-    @RequestMapping(value = "/foos", method = RequestMethod.GET)
++    @RequestMapping(value = "/foos", method = RequestMethod.GET, produces = "application/json;charset=ASCII")
+     public ResponseEntity<List<Foo>> foos() {
+         return new ResponseEntity<>(Arrays.asList(new Foo(42), new Foo(100)), HttpStatus.OK);
+     }
+--- a/microservices-pact-provider/src/main/java/io/pivotal/microservices/pact/provider/Foo.java
++++ b/microservices-pact-provider/src/main/java/io/pivotal/microservices/pact/provider/Foo.java
+@@ -11,8 +11,8 @@ public class Foo {
+-    public int getValue() {
++    public int getVal() {
+         return value;
+     }
+ 
+-    public void setValue(int value) {
++    public void setVal(int value) {
+         this.value = value;
+     }
+ }
+</code></pre>
 
-vim $(find microservices-pact-consumer -name ConsumerPort.java)
-vim $(find microservices-pact-consumer -name ConsumerPortTest.java)
-./gradlew microservices-pact-consumer:test
-./gradlew microservices-pact-provider:pactVerify
-          </pre>
+<pre style="font-size: 18px;"><code class="text" data-trim data-noescape>
+patch -p1 -i break-provider.patch
+./gradlew microservices-pact-provider:assemble microservices-pact-provider:pactVerify
+</code></pre>
+        </section>
+        <section>
+          <h2>Breaking the consumer</h2>
+
+<pre style="font-size: 18px;"><code class="diff" data-trim data-noescape>
+--- a/microservices-pact-consumer/src/main/java/io/pivotal/microservices/pact/consumer/ConsumerPort.java
++++ b/microservices-pact-consumer/src/main/java/io/pivotal/microservices/pact/consumer/ConsumerPort.java
+@@ -23,6 +23,6 @@ public class ConsumerPort {
+ 
+     public List<Foo> foos() {
+         ParameterizedTypeReference<List<Foo>> responseType = new ParameterizedTypeReference<List<Foo>>() {};
+-        return restTemplate.exchange(url + "/foos", HttpMethod.GET, null, responseType).getBody();
++        return restTemplate.exchange(url + "/foos", HttpMethod.POST, null, responseType).getBody();
+     }
+ }
+--- a/microservices-pact-consumer/src/test/java/io/pivotal/microservices/pact/consumer/ConsumerPortTest.java
++++ b/microservices-pact-consumer/src/test/java/io/pivotal/microservices/pact/consumer/ConsumerPortTest.java
+@@ -23,6 +23,6 @@ public class ConsumerPortTest {
+ 
+         return builder.uponReceiving("a request for Foos")
+                 .path("/foos")
+-                .method("GET")
++                .method("POST")
+                 .willRespondWith()
+                 .headers(headers)
+</code></pre>
+
+<pre style="font-size: 18px;"><code class="text" data-trim data-noescape>
+patch -p1 -i break-consumer.patch
+./gradlew microservices-pact-consumer:test microservices-pact-provider:pactVerify
+</code></pre>
+        </section>
+        <section>
+          <h2>Evolve the provider</h2>
+
+<pre style="font-size: 18px;"><code class="diff" data-trim data-noescape>
+--- a/microservices-pact-provider/src/main/java/io/pivotal/microservices/pact/provider/Foo.java
++++ b/microservices-pact-provider/src/main/java/io/pivotal/microservices/pact/provider/Foo.java
+@@ -15,4 +15,8 @@ public class Foo {
+     public void setValue(int value) {
+         this.value = value;
+     }
++
++    public String getExtra() {
++        return "123";
++    }
+ }
+</code></pre>
+
+<pre style="font-size: 18px;"><code class="text" data-trim data-noescape>
+patch -p1 -i evolve-provider.patch
+./gradlew microservices-pact-provider:assemble microservices-pact-provider:pactVerify
+</code></pre>
         </section>
       </div>
     </div>
