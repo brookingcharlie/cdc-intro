@@ -223,7 +223,7 @@ git clone git@github.com:brookingcharlie/microservices-pact.git
 </code></pre>
 
 <pre style="font-size: 18px;"><code class="text" data-trim data-noescape>
-# Build/test the conumer
+# Build/test the consumer
 ./gradlew microservices-pact-consumer:test
 less microservices-pact-consumer/target/pacts/Foo_Consumer-Foo_Provider.json
 </code></pre>
@@ -231,9 +231,14 @@ less microservices-pact-consumer/target/pacts/Foo_Consumer-Foo_Provider.json
 <pre style="font-size: 18px;"><code class="text" data-trim data-noescape>
 # Build/test the provider
 ./gradlew microservices-pact-provider:assemble
-java -jar microservices-pact-provider/build/libs/microservices-pact-provider-0.0.1.jar
-curl -v 'http://localhost:8080/foos/'
 ./gradlew microservices-pact-provider:pactVerify
+</code></pre>
+
+<pre style="font-size: 18px;"><code class="text" data-trim data-noescape>
+# Run the provider
+java -jar microservices-pact-provider/build/libs/microservices-pact-provider-0.0.1.jar
+# ... then in another window
+curl -v 'http://localhost:8080/foos/'
 </code></pre>
         </section>
         <section>
